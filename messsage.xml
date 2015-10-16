@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<autorizacion>
+    <estado>AUTORIZADO</estado>
+    <numeroAutorizacion>1909201519374617907103190019363223111</numeroAutorizacion>
+    <fechaAutorizacion>2015-09-19T19:37:46.316-05:00</fechaAutorizacion>
+    <comprobante><![CDATA[
+        <?xml version="1.0" encoding="UTF-8"?>
+<factura id="comprobante" version="1.1.0">
+    <infoTributaria>
+        <ambiente>2</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>FARMACIAS Y COMISARIATOS</razonSocial>
+        <nombreComercial>FARMACIAS</nombreComercial>
+        <ruc>1790</ruc>
+        <claveAcceso>190920150</claveAcceso>
+        <codDoc>01</codDoc>
+        <estab>118</estab>
+        <ptoEmi>001</ptoEmi>
+        <secuencial>000092732</secuencial>
+        <dirMatriz>KM CINCO Y MEDIO AV DE LOS SHYRIS N SN Y SECUNDARIA</dirMatriz>
+    </infoTributaria>
+    <infoFactura>
+        <fechaEmision>19/09/2015</fechaEmision>
+        <dirEstablecimiento>PASAJE A SN VIA INTEROCEANICA</dirEstablecimiento>
+        <contribuyenteEspecial>5368</contribuyenteEspecial>
+        <obligadoContabilidad>SI</obligadoContabilidad>
+        <tipoIdentificacionComprador>05</tipoIdentificacionComprador>
+        <razonSocialComprador>michael jackson</razonSocialComprador>
+        <identificacionComprador>0501959753</identificacionComprador>
+        <totalSinImpuestos>5.36</totalSinImpuestos>
+        <totalDescuento>0</totalDescuento>
+        <totalConImpuestos>
+            <totalImpuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>0</codigoPorcentaje>
+                <baseImponible>0.00</baseImponible>
+                <tarifa>0</tarifa>
+                <valor>0.00</valor>
+            </totalImpuesto>
+            <totalImpuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>2</codigoPorcentaje>
+                <baseImponible>5.36</baseImponible>
+                <tarifa>12</tarifa>
+                <valor>0.64</valor>
+            </totalImpuesto>
+        </totalConImpuestos>
+        <propina>0.00</propina>
+        <importeTotal>6</importeTotal>
+        <moneda>DOLAR</moneda>
+    </infoFactura>
+    <detalles>
+        <detalle>
+            <codigoPrincipal>1516</codigoPrincipal>
+            <descripcion>ALIMENTO SECO PRO-CANT617H - PROCAN CRP 2KG</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>5.3571</precioUnitario>
+            <descuento>0</descuento>
+            <precioTotalSinImpuesto>5.36</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>2</codigoPorcentaje>
+                    <tarifa>12</tarifa>
+                    <baseImponible>5.36</baseImponible>
+                    <valor>0.64</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+        <detalle>
+            <codigoPrincipal>301930</codigoPrincipal>
+            <descripcion>CUPON VIRTUAL CLIENTEV CU PAPRA JOHNS FYB SET 15</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>0</precioUnitario>
+            <descuento>0</descuento>
+            <precioTotalSinImpuesto>0</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>0</codigoPorcentaje>
+                    <tarifa>0</tarifa>
+                    <baseImponible>0.00</baseImponible>
+                    <valor>0.00</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+    </detalles>
+    <infoAdicional>
+        <campoAdicional nombre="DESCUENTO">0</campoAdicional>
+        <campoAdicional nombre="DOCUMENTO INTERNO">300996</campoAdicional>
+        <campoAdicional nombre="EMAIL">STEBAN@GMAIL.COM</campoAdicional>
+        <campoAdicional nombre="NOMBRE SUCURSAL">FYBECA PASEO SAN FRANCISCO</campoAdicional>
+    </infoAdicional>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature794268"><ds:SignedInfo Id="Signature-SignedInfo191050"><ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod><ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"></ds:SignatureMethod><ds:Reference Id="SignedPropertiesID304292" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature794268-SignedProperties553220"><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod><ds:DigestValue>+ng6zyZ4S0wRNb78H1hgQ4h3yDI=</ds:DigestValue></ds:Reference><ds:Reference URI="#Certificate1545258"><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod><ds:DigestValue>3Ccb7oCPh4wRaPODeinNf5LFa64=</ds:DigestValue></ds:Reference><ds:Reference Id="Reference-ID-497990" URI="#comprobante"><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod><ds:DigestValue>RVkEZtKWAIppXrjRQZDP6Ygt5VI=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue Id="SignatureValue917492">E2FzHdMHL/aTQBgqH1+9Np5jUbR1HV4y7eOlPo+rggwhta4ENvB/zCrvcug50qomN9aFpKXCy94QhbfZHG9MYODt/09RCerMXfAqLLz0ZQvYmdv4rr9fR6/tnh5deu5P/lapB6qj+BjWdKt0k2INrvaQHHXQrDriZjyT3q/uqL7LwkkxBWm0GZ/YNkP5QuoP9S/U0rTXI4qFEOotYx+Mt1YcbTWGYrvNJbeGkFCxg1PU080PO8+c4gvankSnLl+Nhxn0gxAbPBvs7YiA9KRTaZp8bwLWYAMjMOQssSDJOmPiIDAEj6e6QR5RFFJGv9+8WaTuvAtpTaVKfJ0EaFBxwA==</ds:SignatureValue><ds:KeyInfo Id="Certificate1545258"><ds:X509Data><ds:X509Certificate>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</ds:X509Certificate></ds:X509Data><ds:KeyValue><ds:RSAKeyValue><ds:Modulus>
+tM2pc9ECsEOq2Ary5+6L5RbtXJW+JDhmWJHWdY7j0IMEY842utUH+b4wGzBlPG+4WByuohGHgYby7U5ggKWWCvr73ETFYXdwpeRCPeFvdQ46cbvy4qh7yNY1HliQMF5v3rbSKLjIhaGWoNDjrV6D9orG0m9WTAhakPZVYnlXpGFO03ZPJLAf6iUv8qXDkbQmknVznY/+lt3K5ZRQ3Ea9wl8MrhdSnh+xFrA8lyuHnGKjPlXNAcFAn1BX8O6dXDdVIlr2NTjvtWNy8bZTIbQFl1vJGGeD5Ia78xLAcd0ST46RwV+ki5zabA4cStLYc+J3r9KaYoomB23LPWDkoVTRtw==
+</ds:Modulus><ds:Exponent>AQAB</ds:Exponent></ds:RSAKeyValue></ds:KeyValue></ds:KeyInfo><ds:Object Id="Signature794268-Object910512"><etsi:QualifyingProperties Target="#Signature794268"><etsi:SignedProperties Id="Signature794268-SignedProperties553220"><etsi:SignedSignatureProperties><etsi:SigningTime>2015-09-19T19:37:45-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod><ds:DigestValue>PrlhXocSr/8lQrGT30IhQogZ1HE=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=AC BANCO CENTRAL DEL ECUADOR,L=QUITO,OU=ENTIDAD DE CERTIFICACION DE INFORMACION-ECIBCE,O=BANCO CENTRAL DEL ECUADOR,C=EC</ds:X509IssuerName><ds:X509SerialNumber>1313033704</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-497990"><etsi:Description>Contenido Comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>
+    ]]></comprobante>
+</autorizacion>

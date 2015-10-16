@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+  <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+  <title>{{title}}  - Transactions</title>
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+
+  <!--<link rel='stylesheet' type="text/css"-->
+  <!--href='/bootstrap/dist/css/bootstrap.min.css' />-->
+
+  <link rel='stylesheet' href='/stylesheets/jquery-impromptu.css' />
+  <link rel='stylesheet' href='/stylesheets/jquery-ui.css' />
+  <link rel="stylesheet" type="text/css" href="/datatables.min.css">
+  <link rel='stylesheet' type="text/css"
+        href='/bootstrap/dist/css/bootstrap.min.css'/>
+    <link rel='stylesheet' type="text/css" href='/stylesheets/webinterface.css' />
+
+
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script charset="utf8" src="/datatables.min.js"></script>
+
+  <script type="text/javascript">
+
+    var refreshData, table, smstable;
+
+    $(document).ready(function () {
+        table = $('#index').DataTable({
+            "ajax": {
+                "url": "/infoTributaria/{{email}}",
+                "type": "post",
+                "dataType": 'json'
+            },
+            "columns": [
+                {"data": "email"},
+                {"data": "guid", class: "hidden guid_column"},
+                {"data": "ambiente"},
+                {"data": "tipoEmision"},
+                {"data": "razonSocial"},
+                {"data": "nombreComercial"},
+                {"data": "ruc"},
+                {"data": "claveAcceso"},
+                {"data": "codDoc"},
+                {"data": "estab"},
+                {"data": "ptoEmi"},
+                {"data": "secuencial"},
+                {"data": "dirMatriz"}
+            ],
+            "columnDefs": [{"targets": 0, "orderable": false}],
+            "ordering": true,
+            "scroller": {
+                "loadingIndicator": true
+            },
+            "scrollX": true,
+            "scrollY": 300,
+            "scrollCollapse": true
+        });
+
+        detalles = $('#detalles').DataTable({
+                "ajax": {
+                    "url" : "/detalles",
+                    "type" : "post",
+                    "dataType" : 'json'
+                },
+                "columns": [
+                    { "data": "codigoPrincipal"},
+                    { "data": "descripcion"},
+                    { "data": "cantidad"},
+                    { "data": "precioUnitario"},
+                    { "data": "descuento"},
+                    { "data": "precioTotalSinImpuesto"},
+                    { "data": "impuesto_codigo"},
+                    { "data": "impuesto_codigoPorcentaje"},
+                    { "data": "impuesto_tarifa"},
+                    { "data": "impuesto_baseImponible"},
+                    { "data": "impuesto_valor"}
+                ],
+                "columnDefs": [ { "targets": 0, "orderable": false } ],
+                "ordering": true,
+                "scroller": {
+                    "loadingIndicator": true
+                },
+                "scrollX": true,
+                "scrollY": 200,
+                "scrollCollapse": true
+            });
+
+
+      $( "#dialog" ).dialog({
+        "width" : 1000,
+          "height": 400,
+        "buttons": [
+          {
+            text: "OK",
+            click: function() {
+              $( this ).dialog( "close" );
+            }
+            //Uncommenting the following line would hide the te-
+            //xt, resulting in the label being used as a tooltip
+            //showText: false
+          }
+        ]
+      });
+      $( "#dialog" ).dialog("close");
+
+        infoAdicional = $('#infoAdicional').DataTable({
+            "ajax": {
+                "url" : "/infoAdicional",
+                "type" : "post",
+                "dataType" : 'json'
+            },
+            "columns": [
+                { "data": "nombre"},
+                { "data": "text"}
+            ],
+            "columnDefs": [ { "targets": 0, "orderable": false } ],
+            "ordering": true,
+            "scroller": {
+                "loadingIndicator": true
+            },
+            "scrollX": true,
+            "scrollY": 200,
+            "scrollCollapse": true
+        });
+
+
+        $( "#dialog1" ).dialog({
+            "width" : 1000,
+            "height": 400,
+            "buttons": [
+                {
+                    text: "OK",
+                    click: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            ]
+        });
+        $( "#dialog1" ).dialog("close");
+
+
+        infoFactura = $('#infoFactura').DataTable({
+            "ajax": {
+                "url" : "/infoFactura",
+                "type" : "post",
+                "dataType" : 'json'
+            },
+            "columns": [
+                { "data": "fechaEmision"},
+                { "data": "dirEstablecimiento"},
+                { "data": "contribuyenteEspecial"},
+                { "data": "obligadoContabilidad"},
+                { "data": "tipoIdentificacionComprador"},
+                { "data": "razonSocialComprador"},
+                { "data": "identificacionComprador"},
+                { "data": "totalSinImpuestos"},
+                { "data": "totalDescuento"},
+                { "data": "propina"},
+                { "data": "importeTotal"},
+                { "data": "moneda"}
+            ],
+            "columnDefs": [ { "targets": 0, "orderable": false } ],
+            "ordering": true,
+            "scroller": {
+                "loadingIndicator": true
+            },
+            "scrollX": true,
+            "scrollY": 200,
+            "scrollCollapse": true
+        });
+
+
+        $( "#dialog2" ).dialog({
+            "width" : 1000,
+            "height": 400,
+            "buttons": [
+                {
+                    text: "OK",
+                    click: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            ]
+        });
+        $( "#dialog2" ).dialog("close");
+
+        totalConImpuestos = $('#totalConImpuestos').DataTable({
+            "ajax": {
+                "url" : "/totalConImpuestos",
+                "type" : "post",
+                "dataType" : 'json'
+            },
+            "columns": [
+                { "data": "codigo"},
+                { "data": "codigoPorcentaje"},
+                { "data": "baseImponible"},
+                { "data": "tarifa"},
+                { "data": "valor"}
+            ],
+            "columnDefs": [ { "targets": 0, "orderable": false } ],
+            "ordering": true,
+            "scroller": {
+                "loadingIndicator": true
+            },
+            "scrollX": true,
+            "scrollY": 200,
+            "scrollCollapse": true
+        });
+
+
+        $( "#dialog3" ).dialog({
+            "width" : 1000,
+            "height": 400,
+            "buttons": [
+                {
+                    text: "OK",
+                    click: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            ]
+        });
+        $( "#dialog3" ).dialog("close");
+
+    });
+
+    // $(document).on('click', 'tr', function () {
+    //   KeyTable( table );
+    // });
+    //clicking on the row makes the row colour navy blue.
+    $(document).on('click', 'table#index > tbody tr', function () {
+      if ( $(this).hasClass('selected') ) {
+        $(this).removeClass('selected');
+//        showHideOthersButton();
+      }
+      else {
+        table.$('tr.selected').removeClass('selected');
+        $(this).addClass('selected');
+//                $.fn.dataTable.KeyTable( table );
+//        showHideOthersButton();
+      }
+//            showHideOthersButton();
+    });
+
+
+    $(document).on('click', 'table#sms > tbody tr', function () {
+      // alert("click");
+      if ( $(this).hasClass('selected') ) {
+        $(this).removeClass('selected');
+      }
+      else {
+        smstable.$('tr.selected').removeClass('selected');
+        $(this).addClass('selected');
+//                $.fn.dataTable.KeyTable( smstable );
+      }
+    });
+
+
+    //button called to load the new data in the tranlog table
+    function reloadButtonCalled(){
+      table.ajax.url('/tranlog/users').load();
+      document.getElementById("showOtherButton").disabled = "disabled";
+//            $.fn.dataTable.KeyTable( table );
+    }
+
+
+    function detallesCalled() {
+      var currCell = "", guid="";
+      currCell = table.$('tr.selected');
+      if(currCell.text() == "") {
+          return;
+      }
+      guid = currCell.find("td.guid_column").text();
+
+      $( "#dialog" ).dialog({
+        "width" : 1000,
+          "height": 400,
+        "buttons": [
+          {
+            text: "OK",
+            click: function() {
+              $( this ).dialog( "close" );
+            }
+          }
+        ]
+      });
+
+      document.getElementById("dialog").style.visibility = "visible";
+        detalles.ajax.url("/detalles/"+ guid).load();
+
+    }
+
+    function infoAdicionalCalled() {
+        var currCell = "", guid="";
+        currCell = table.$('tr.selected');
+        if(currCell.text() == "") {
+            return;
+        }
+        guid = currCell.find("td.guid_column").text();
+        infoAdicional.ajax.url("/infoAdicional/"+ guid).load();
+        $( "#dialog1" ).dialog({
+            "width" : 1000,
+            "height": 400,
+            "buttons": [
+                {
+                    text: "OK",
+                    click: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            ]
+        });
+
+        document.getElementById("dialog1").style.visibility = "visible";
+    }
+
+    function infoFacturaCalled() {
+        var currCell = "", guid="";
+        currCell = table.$('tr.selected');
+        if(currCell.text() == "") {
+            return;
+        }
+        guid = currCell.find("td.guid_column").text();
+        infoFactura.ajax.url("/infoFactura/"+ guid).load();
+        $( "#dialog2" ).dialog({
+            "width" : 1000,
+            "height": 400,
+            "buttons": [
+                {
+                    text: "OK",
+                    click: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            ]
+        });
+
+        document.getElementById("dialog2").style.visibility = "visible";
+    }
+
+    function totalConImpuestosCalled() {
+        var currCell = "", guid="";
+        currCell = table.$('tr.selected');
+        if(currCell.text() == "") {
+            return;
+        }
+        guid = currCell.find("td.guid_column").text();
+        totalConImpuestos.ajax.url("/totalConImpuestos/"+ guid).load();
+        $( "#dialog3" ).dialog({
+            "width" : 1000,
+            "height": 400,
+            "buttons": [
+                {
+                    text: "OK",
+                    click: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            ]
+        });
+
+        document.getElementById("dialog3").style.visibility = "visible";
+    }
+
+
+  </script>
+
+  <title>{{title}}</title>
+</head>
+
+<body>
+<div class = "navbar navbar-fixed-top">
+  <div class = "container">
+    <a href="/home" class = "navbar-brand navbar-left">
+      <span>{{title}}</span></a>
+
+    <button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+      <span class = "icon-bar" > </span>
+      <span class = "icon-bar" > </span>
+      <span class = "icon-bar" > </span>
+    </button>
+      <div class = "collapse navbar-collapse navHeaderCollapse">
+          <ul class = "nav navbar-nav navbar-right">
+          </ul>
+      </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <h4 class="sub-header">Transactions</h4>
+      <table id="index" class="table table-striped table-bordered" cellspacing="0"
+             width= "100%" style="border: 1px solid #E8E8E8" role="grid">
+        <thead>
+        <tr style="background-color: #CCC" id="something">
+          <th>Email</th>
+            <th>GUID</th>
+          <th>Ambiente</th>
+          <th>tipo Emision</th>
+          <th>razon Social</th>
+          <th>nombre Comercial</th>
+          <th>ruc</th>
+          <th>clave Acceso</th>
+          <th>cod Doc</th>
+          <th>estab</th>
+          <th>pto Emi</th>
+          <th>secuencial</th>
+          <th>dir Matriz</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <br>
+
+        <button type="button" class="btn btn-primary btn-sm"
+                style="width: 150px" onclick="detallesCalled();">detalles
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" id = "refreshButton"
+                style="width: 150px"
+                onclick="infoAdicionalCalled();">infoAdicional
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" id = "reloadButton"
+                style="width: 150px"
+                onclick="infoFacturaCalled();">infoFactura
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" id="creditQueueButton"
+                style="width: 150px" style="width: 70px"
+                onclick="totalConImpuestosCalled();">totalConImpuestos
+        </button>
+
+  </div>
+</div>
+
+<div id="dialog" style="visibility: hidden">
+  <div class="container-fluid">
+    <div class="row">
+        <table id="detalles" class="table table-striped table-bordered" cellspacing="0"
+               width="100%" style="border: 1px solid #E8E8E8" role="grid">
+          <thead>
+          <tr style="background-color: #CCC" id="something">
+              <th>codigo Principal</th>
+              <th>descripcion</th>
+              <th>cantidad</th>
+              <th>precio Unitario</th>
+              <th>descuento</th>
+              <th>precio Total Sin Impuesto</th>
+              <th>impuesto codigo</th>
+              <th>impuesto codigo Porcentaje</th>
+              <th>impuesto tarifa</th>
+              <th>impuesto base Imponible</th>
+              <th>impuesto valor</th>
+          </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+
+<div id="dialog1" style="visibility: hidden">
+    <div class="container-fluid">
+        <div class="row">
+            <table id="infoAdicional" class="table table-striped table-bordered" cellspacing="0"
+                   width="100%" style="border: 1px solid #E8E8E8" role="grid">
+                <thead>
+                <tr style="background-color: #CCC" id="something">
+                    <th>nombre</th>
+                    <th>text</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="dialog2" style="visibility: hidden">
+    <div class="container-fluid">
+        <div class="row">
+            <table id="infoFactura" class="table table-striped table-bordered" cellspacing="0"
+                   width="100%" style="border: 1px solid #E8E8E8" role="grid">
+                <thead>
+                <tr style="background-color: #CCC" id="something">
+                    <th>fecha Emision</th>
+                    <th>dir Establecimiento</th>
+                    <th>contribuyente Especial</th>
+                    <th>obligado Contabilidad</th>
+                    <th>tipo Identificacion Comprador</th>
+                    <th>razon Social Comprador</th>
+                    <th>identificacion Comprador</th>
+                    <th>total Sin Impuestos</th>
+                    <th>total Descuento</th>
+                    <th>propina</th>
+                    <th>importe Total</th>
+                    <th>moneda</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="dialog3" style="visibility: hidden">
+    <div class="container-fluid">
+        <div class="row">
+            <table id="totalConImpuestos" class="table table-striped table-bordered" cellspacing="0"
+                   width="100%" style="border: 1px solid #E8E8E8" role="grid">
+                <thead>
+                <tr style="background-color: #CCC" id="something">
+                    <th>codigo</th>
+                    <th>codigo Porcentaje</th>
+                    <th>base Imponible</th>
+                    <th>tarifa</th>
+                    <th>valor</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix visible-lg"></div>
+
+<div class = "navbar navbar-fixed-bottom">
+  <div class = "container">
+    <p class = "navbar-text pull-left" style="font-size:14px">Copyright © 2015, {{title}}</p>
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf8"
+       src="/alertifyjs/build/alertify.min.js"></script>
+<script type="text/javascript" charset="utf8"
+       src="/javascripts/jquery-impromptu.min.js"></script>
+<script type="text/javascript" charset="utf8"
+       src="/javascripts/jquery-ui.min.js"></script>
+
+
+</body>
+</html>
